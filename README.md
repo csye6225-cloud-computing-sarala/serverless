@@ -1,9 +1,8 @@
-# Serverless Lambda Functions
-This repository contains infrastructure and code for AWS Lambda functions in a serverless architecture.
+# Serverless Email Verification Lambda Function
 
-## Structure
-- `src/`: Contains Lambda function code.
-- `infra/`: Infrastructure as code for deploying Lambda functions.
+This repository contains the AWS Lambda function code for handling email verification when a new user registers on the web application.
 
-## Getting Started
-Instructions on how to set up and deploy.
+## **Features**
+
+- Receives SNS messages when a new user registers.
+- Sends a verification email with a link that expires after 2 minutes.
