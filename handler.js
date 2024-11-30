@@ -6,16 +6,17 @@ const secretsManager = new AWS.SecretsManager();
 
 export const handler = async (event) => {
   try {
-    // Retrieve Mailgun API key from Secrets Manager
-    const secretValue = await secretsManager
+    const secretId = process.env.EMAIL_SECRET_ID;
+    console.log("SECRET ID: ", secretId);
+    const secretData = await secretsManager
       .getSecretValue({
-        SecretId: process.env.MAILGUN_SECRET_ARN,
+        SecretId: secretId,
       })
       .promise();
 
-    const secret = JSON.parse(secretValue.SecretString);
-    const MAILGUN_API_KEY = secret.MAILGUN_API_KEY;
-    const DOMAIN = process.env.MAILGUN_DOMAIN;
+    const credentials = JSON.parse(secretData.SecretString);
+    const MAILGUN_API_KEY = credentials.MAILGUN_API_KEY;
+    const DOMAIN = credentials.MAILGUN_DOMAIN;
     console.log("MAILGUN_API_KEY:", MAILGUN_API_KEY);
     console.log("MAILGUN_DOMAIN:", DOMAIN);
     console.log("url:", DOMAIN);
