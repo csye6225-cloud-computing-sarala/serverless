@@ -6,3 +6,6 @@ This repository contains the AWS Lambda function code for handling email verific
 
 - Receives SNS messages when a new user registers.
 - Sends a verification email with a link that expires after 2 minutes.
+
+// To zip handler function
+zip -r lambda_function.zip handler.js package.json node_modules
